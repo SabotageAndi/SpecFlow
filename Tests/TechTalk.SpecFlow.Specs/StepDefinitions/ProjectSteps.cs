@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Text;
 using FluentAssertions;
+using SpecFlow.TestProjectGenerator;
 using TechTalk.SpecFlow.Specs.Drivers;
-using TechTalk.SpecFlow.Specs.Drivers.MsBuild;
 
 namespace TechTalk.SpecFlow.Specs.StepDefinitions
 {
@@ -11,49 +11,57 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
     public class ProjectSteps
     {
         private readonly InputProjectDriver inputProjectDriver;
-        private readonly ProjectGenerator projectGenerator;
         private readonly ProjectCompiler projectCompiler;
         private readonly HooksDriver _hooksDriver;
 
-        public ProjectSteps(InputProjectDriver inputProjectDriver, ProjectGenerator projectGenerator, ProjectCompiler projectCompiler, HooksDriver hooksDriver)
+        public ProjectSteps(InputProjectDriver inputProjectDriver, ProjectCompiler projectCompiler, HooksDriver hooksDriver)
         {
             this.inputProjectDriver = inputProjectDriver;
             this.projectCompiler = projectCompiler;
             _hooksDriver = hooksDriver;
-            this.projectGenerator = projectGenerator;
         }
 
         [Given(@"there is a SpecFlow project")]
         public void GivenThereIsASpecFlowProject()
         {
-            GivenThereIsASpecFlowProject("SpecFlow.TestProject");
+
         }
 
-        [Given(@"there is a SpecFlow project '(.*)'")]
-        public void GivenThereIsASpecFlowProject(string projectName)
-        {
-            inputProjectDriver.ProjectName = projectName;
-        }
+        //[Given(@"there is a SpecFlow project '(.*)'")]
+        //public void GivenThereIsASpecFlowProject(string projectName)
+        //{
+        //    inputProjectDriver.ProjectName = projectName;
+        //}
 
         [Given(@"I have a '(.*)' test project")]
         public void GivenIHaveATestProject(string language)
         {
-            inputProjectDriver.Language = language;
+            switch (language)
+            {
+                case "C#":
+                    inputProjectDriver.ProgrammingLanguage = global::SpecFlow.TestProjectGenerator.ProgrammingLanguage.CSharp;
+
+                    break;
+                case "VB.Net":
+                    inputProjectDriver.ProgrammingLanguage = global::SpecFlow.TestProjectGenerator.ProgrammingLanguage.VB;
+                    break;
+            }
+
         }
 
 
         private bool isCompiled = false;
         private Exception CompilationError;
 
-//        [BeforeScenarioBlock]
-//        public void CompileProject()
-//        {
-//            if ((ScenarioContext.Current.CurrentScenarioBlock == ScenarioBlock.When))
-//            {
-//                EnsureCompiled();
-//            }
-//        }
-//
+        //        [BeforeScenarioBlock]
+        //        public void CompileProject()
+        //        {
+        //            if ((ScenarioContext.Current.CurrentScenarioBlock == ScenarioBlock.When))
+        //            {
+        //                EnsureCompiled();
+        //            }
+        //        }
+        //
         public void EnsureCompiled()
         {
             if (!isCompiled)
@@ -71,8 +79,7 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
 
         private void CompileInternal()
         {
-            var project = projectGenerator.GenerateProject(inputProjectDriver);
-            projectCompiler.Compile(project);
+            projectCompiler.Compile(inputProjectDriver);
 
             _hooksDriver.EnsureInitialized();
         }

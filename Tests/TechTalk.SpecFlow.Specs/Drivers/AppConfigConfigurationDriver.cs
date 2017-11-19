@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using TechTalk.SpecFlow.Specs.Drivers;
-using TechTalk.SpecFlow.Specs.Drivers.Templates;
+using SpecFlow.TestProjectGenerator;
 
 namespace TechTalk.SpecFlow.Specs.Drivers
 {
     public class AppConfigConfigurationDriver
     {
+        private readonly ProjectCompilerHelper _projectCompilerHelper;
         private const string DefaultProviderName = "NUnit";
         private readonly XDocument parsedConfiguration;
 
@@ -21,10 +21,12 @@ namespace TechTalk.SpecFlow.Specs.Drivers
 
         public bool IsUsed { get; set; }
 
-        public AppConfigConfigurationDriver(TemplateManager templateManager)
+        public AppConfigConfigurationDriver(TemplateManager templateManager, ProjectCompilerHelper projectCompilerHelper)
         {
+            _projectCompilerHelper = projectCompilerHelper;
             UnitTestProviderName = DefaultProviderName;
-            parsedConfiguration = templateManager.LoadXmlTemplate("App.config");
+            
+            parsedConfiguration =  templateManager.LoadXmlTemplate("App.config");
         }
 
         private XElement EnsureGeneratorElement()

@@ -71,7 +71,7 @@ namespace SpecFlow.TestProjectGenerator
         public InputProjectDriver(Folders folders, AppConfigDriver appConfigDriver)
         {
             TestingFrameworkReference = "<Reference Include=\"Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL\" />";
-            
+
             _folders = folders;
             _appConfigDriver = appConfigDriver;
 
@@ -80,6 +80,7 @@ namespace SpecFlow.TestProjectGenerator
             SetProjectRootFolder(FSharpOption<string>.None);
 
             GetAndAddDefaultBindingClass();
+            TestingFrameworkPackage = "<package id=\"SpecRun.Runner\" version=\"{NuGetVersion}\" targetFramework=\"net45\" />";
         }
 
         private void GetAndAddDefaultBindingClass()
@@ -118,9 +119,9 @@ namespace SpecFlow.TestProjectGenerator
             return $"Feature{FeatureFiles.Count + 1}.feature";
         }
 
-        public void AddFeatureFile(string featureFileText)
+        public void AddFeatureFile(string featureFileText, string testFile = null)
         {
-            var featureFile = new FeatureFileInput(GetFeatureFileName(), featureFileText);
+            var featureFile = new FeatureFileInput(testFile ?? GetFeatureFileName(), featureFileText);
             FeatureFiles.Add(featureFile);
             CurrentFeatureFile = featureFile;
         }
@@ -153,16 +154,18 @@ namespace SpecFlow.TestProjectGenerator
             DefaultBindingClass.OtherBindings.Add(bindingCode);
         }
 
-        public void AddEventBinding(string eventType, string code)
+        public void AddEventBinding(string eventType, string code, string methodName, int hookOrder = 10000)
         {
-            AddBindingCode(GetBindingCode(eventType, code));
+            AddBindingCode(GetBindingCode(eventType, code, methodName, hookOrder));
         }
 
-        private string GetBindingCode(string eventType, string code)
+        private string GetBindingCode(string eventType, string code, string methodName, int hookOrder)
         {
-            return _programLanguageInputProjectDriver.GetBindingCode(eventType, code);
+            return _programLanguageInputProjectDriver.GetBindingCode(eventType, code, methodName, hookOrder);
+
         }
-        
+
+
 
         public void SetTestAdapterPath(string testAdapterPath)
         {
@@ -200,7 +203,7 @@ namespace SpecFlow.TestProjectGenerator
 
 
 
-            TestingFrameworkPackage = $"<package id=\"NUnit\" version=\"{nunitVersion}\" targetFramework=\"net45\" />";
+            TestingFrameworkPackage += $"<package id=\"NUnit\" version=\"{nunitVersion}\" targetFramework=\"net45\" />";
         }
 
         public void AddBindingClass(string fileName, string code)
@@ -209,5 +212,15 @@ namespace SpecFlow.TestProjectGenerator
         }
 
         public string TestingFrameworkPackage { get; set; }
+
+        public void AddRawBindingClass(string rawBindingClass)
+        {
+            BindingClasses.Add(new BindingClassInput(GetBindingFileName(), rawBindingClass, "."));
+        }
+
+        private string GetBindingFileName()
+        {
+            return string.Format("Binding{0}." + _programLanguageInputProjectDriver.CodeFileExtension, BindingClasses.Count + 1);
+        }
     }
 }

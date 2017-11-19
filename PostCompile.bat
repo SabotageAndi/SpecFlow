@@ -1,12 +1,14 @@
 echo %1
+echo %2
 
 set targetDir=%1
+set outputPath=%2
 
-set copyTargetDir=%targetDir%\bin\Debug\net452
+set copyTargetDir=%targetDir%\%outputPath%
 
 cd ..\..\
 mkdir "%copyTargetDir%\SpecFlow\Tools"
-mkdir "%copyTargetDir%\SpecFlow\lib"
+mkdir "%copyTargetDir%\SpecFlow\lib\net45"
 
 mkdir "%copyTargetDir%\NUnit3\"
 mkdir "%copyTargetDir%\NUnit3-Runner\"
@@ -28,16 +30,16 @@ copy .\TechTalk.SpecFlow.Generator\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow
 copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\Tools"
 copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\Tools"
 
-copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.targets "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.tasks "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Tools\bin\Debug\net45\SpecFlow.* "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Utils\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Reporting\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Parser\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
-copy .\TechTalk.SpecFlow.Generator\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
-copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\lib"
-copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.targets "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.tasks "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Tools\bin\Debug\net45\SpecFlow.* "%copyTargetDir%\SpecFlow\lib"
+copy .\TechTalk.SpecFlow\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib\net45"
+rem copy .\TechTalk.SpecFlow.Utils\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Reporting\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Parser\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
+rem copy .\TechTalk.SpecFlow.Generator\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\lib"
+rem copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\lib"
+rem copy "%targetDir%\bin\Debug\net45\Gherkin.dll" "%copyTargetDir%\SpecFlow\lib"
 
 rem xcopy "%USERPROFILE%\.nuget\packages\NUnit\3.2.1\*" "%copyTargetDir%\NUnit3\" /s /y
 rem xcopy ".\NuGet\custom\NUnit3-Runner\*" "%copyTargetDir%\NUnit3-Runner\" /s /y

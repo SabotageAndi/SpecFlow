@@ -1,45 +1,39 @@
 ﻿using System;
-using System.Linq;
 using FluentAssertions;
-using TechTalk.SpecFlow.Specs.Drivers;
-using TechTalk.SpecFlow.Specs.Drivers.MsBuild;
+using SpecFlow.TestProjectGenerator;
 
 namespace TechTalk.SpecFlow.IntegrationTests.StepDefinitions
 {
     [Binding]
     public class GeneratorSteps : Steps
     {
-        private readonly InputProjectDriver inputProjectDriver;
-        private readonly ProjectGenerator projectGenerator;
-        private readonly ProjectCompiler projectCompiler;
-        private Exception compilationError;
+        private readonly InputProjectDriver _inputProjectDriver;
+        private readonly ProjectCompiler _projectCompiler;
+        private Exception _compilationError;
 
-        public GeneratorSteps(InputProjectDriver inputProjectDriver, ProjectGenerator projectGenerator, ProjectCompiler projectCompiler)
+        public GeneratorSteps(InputProjectDriver inputProjectDriver, ProjectCompiler projectCompiler)
         {
-            this.inputProjectDriver = inputProjectDriver;
-            this.projectCompiler = projectCompiler;
-            this.projectGenerator = projectGenerator;
+            _inputProjectDriver = inputProjectDriver;
+            _projectCompiler = projectCompiler;
         }
 
         [When(@"the feature files in the project are generated")]
         public void WhenTheFeatureFilesInTheProjectAreGenerated()
         {
-            var project = projectGenerator.GenerateProject(inputProjectDriver);
             try
             {
-                compilationError = null;
-                projectCompiler.Compile(project, "UpdateFeatureFilesInProject");
+                _projectCompiler.Compile(_inputProjectDriver);
             }
             catch (Exception ex)
             {
-                compilationError = ex;
+                _compilationError = ex;
             }
         }
 
         [Then(@"no generation error is reported")]
         public void ThenNoGenerationErrorIsReported()
         {
-            compilationError.Should().BeNull();
+            _compilationError.Should().BeNull();
         }
     }
 }

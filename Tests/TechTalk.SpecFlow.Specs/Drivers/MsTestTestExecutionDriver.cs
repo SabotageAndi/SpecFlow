@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using SpecFlow.TestProjectGenerator;
 
 namespace TechTalk.SpecFlow.Specs.Drivers
 {
@@ -11,13 +12,15 @@ namespace TechTalk.SpecFlow.Specs.Drivers
     {
         private readonly InputProjectDriver inputProjectDriver;
         private readonly TestExecutionResult testExecutionResult;
+        private readonly Folders _folders;
 
         public TestSettingsFileInput TestSettingsFile { get; set; }
 
-        public MsTestTestExecutionDriver(InputProjectDriver inputProjectDriver, TestExecutionResult testExecutionResult)
+        public MsTestTestExecutionDriver(InputProjectDriver inputProjectDriver, TestExecutionResult testExecutionResult, Folders folders)
         {
             this.inputProjectDriver = inputProjectDriver;
             this.testExecutionResult = testExecutionResult;
+            _folders = folders;
         }
 
         public TestRunSummary Execute()
@@ -36,8 +39,7 @@ namespace TechTalk.SpecFlow.Specs.Drivers
 
             if (this.TestSettingsFile != null)
             {
-                testSettingsFilePath = Path.Combine(
-                    inputProjectDriver.CompilationFolder,
+                testSettingsFilePath = Path.Combine(_folders.TestFolder,
                     this.TestSettingsFile.ProjectRelativePath);
 
                 File.WriteAllText(testSettingsFilePath, this.TestSettingsFile.Content, Encoding.UTF8);

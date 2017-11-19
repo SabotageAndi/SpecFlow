@@ -5,13 +5,20 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
-namespace TechTalk.SpecFlow.Specs.Drivers.Templates
+namespace SpecFlow.TestProjectGenerator
 {
     public class TemplateManager
     {
         public string LoadTemplate(string templateName, Dictionary<string, string> replacements = null)
         {
-            var projectTemplateStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetType(), templateName);
+            var assembly = Assembly.GetAssembly(typeof(TemplateManager));
+            Debug.Assert(assembly != null);
+
+            string resourceNameToFind = "TestProjectTemplates." + templateName;
+            var resourceName = assembly.GetManifestResourceNames().Where(i => i.EndsWith(resourceNameToFind)).SingleOrDefault();
+            Debug.Assert(resourceName != null);
+
+            var projectTemplateStream = assembly.GetManifestResourceStream(resourceName);
             Debug.Assert(projectTemplateStream != null);
             string fileContent = new StreamReader(projectTemplateStream).ReadToEnd();
 

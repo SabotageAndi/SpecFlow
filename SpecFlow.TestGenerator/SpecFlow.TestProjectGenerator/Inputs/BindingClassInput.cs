@@ -11,7 +11,16 @@ namespace SpecFlow.TestProjectGenerator.Inputs
             OtherBindings = new List<string>();
         }
 
+        public BindingClassInput(string fileName, string rawClass, string folder) : base(fileName, folder)
+        {
+            RawClass = rawClass;
+        }
+
+        public string RawClass { get; set; }
+
         public List<StepBindingInput> StepBindings { get; }
         public List<string> OtherBindings { get; }
+
+
     }
 }

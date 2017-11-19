@@ -31,6 +31,7 @@ namespace SpecFlow.TestProjectGenerator.ProgramLanguageDrivers
         }
 
         protected override string BindingClassFileName => "BindingClass.cs";
+        protected override string BindingFileName => "Bindings.cs";
 
         protected override string GetBindingsCode(BindingClassInput bindingClassInput)
         {

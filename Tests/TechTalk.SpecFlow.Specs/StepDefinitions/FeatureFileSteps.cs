@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using TechTalk.SpecFlow.Specs.Drivers;
+using SpecFlow.TestProjectGenerator;
 
 namespace TechTalk.SpecFlow.Specs.StepDefinitions
 {
@@ -67,8 +67,8 @@ Scenario: {1}
 
             inputProjectDriver.AddFeatureFile(featureBuilder.ToString());
 
-            inputProjectDriver.AddStepBinding(ScenarioBlock.When, "the step pass in " + featureTitle, code: "//pass");
-            inputProjectDriver.AddStepBinding(ScenarioBlock.When, "the step fail in " + featureTitle, code: "throw new System.Exception(\"simulated failure\");");
+            inputProjectDriver.AddStepBinding(ScenarioBlock.When.ToString(), "the step pass in " + featureTitle, csharpcode : "//pass", vbnetcode:"");
+            inputProjectDriver.AddStepBinding(ScenarioBlock.When.ToString(), "the step fail in " + featureTitle, csharpcode: "throw new System.Exception(\"simulated failure\");", vbnetcode: "Throw New System.Exception(\"simulated failure\")");
         }
     }
 }

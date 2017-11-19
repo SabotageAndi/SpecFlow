@@ -134,7 +134,7 @@ namespace SpecFlow.TestProjectGenerator
 
         private void RestoreNugetPackage(InputProjectDriver inputProjectDriver)
         {
-            var processPath = Path.Combine(_folders.GlobalPackages, "NuGet.CommandLine","4.1.0", "tools", "NuGet.exe");
+            var processPath = Path.Combine(_folders.GlobalPackages, "NuGet.CommandLine","4.3.0", "tools", "NuGet.exe");
 
             if (!File.Exists(processPath))
             {
@@ -177,8 +177,8 @@ namespace SpecFlow.TestProjectGenerator
 
             _projectCompilerHelper.SaveFileFromResourceTemplate(inputProjectDriver.ProjectFolder, "packages.config", "packages.config", new Dictionary<string, string>()
             {
+                {"TestingFrameworkPackage", inputProjectDriver.TestingFrameworkPackage},
                 {"NuGetVersion", CurrentVersionDriver.NuGetVersion},
-                {"TestingFrameworkPackage", inputProjectDriver.TestingFrameworkPackage}
             });
             project.AddItem("None", "packages.config");
         }

@@ -3,8 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SpecFlow.TestProjectGenerator;
 using TechTalk.SpecFlow.Reporting.StepDefinitionReport;
 using TechTalk.SpecFlow.Specs.Drivers;
+using ProcessHelper = TechTalk.SpecFlow.Specs.Drivers.ProcessHelper;
 
 namespace TechTalk.SpecFlow.Specs.StepDefinitions
 {
@@ -47,7 +49,7 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
 
             processHelper.RunProcess(
                 Path.Combine(AssemblyFolderHelper.GetTestAssemblyFolder(), @"SpecFlow\tools\specflow.exe"),
-                "nunitexecutionreport \"{0}\" \"/xmlTestResult:{1}\" \"/testOutput:{2}\" \"/out:{3}\" {4}", inputProjectDriver.ProjectFilePath,
+                "nunitexecutionreport \"{0}\" \"/xmlTestResult:{1}\" \"/testOutput:{2}\" \"/out:{3}\" {4}", inputProjectDriver.ProjectPath,
                 Path.Combine(inputProjectDriver.DeploymentFolder, "nunit-result.xml"), Path.Combine(inputProjectDriver.DeploymentFolder, "nunit-result.txt"),
                 reportInfo.FilePath, GetCustomXsltArgument());
         }
@@ -62,7 +64,7 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
 
             processHelper.RunProcess(
                 Path.Combine(AssemblyFolderHelper.GetTestAssemblyFolder(), @"SpecFlow\tools\specflow.exe"),
-                "mstestexecutionreport \"{0}\" \"/testResult:{1}\" \"/out:{2}\" {3}", inputProjectDriver.ProjectFilePath,
+                "mstestexecutionreport \"{0}\" \"/testResult:{1}\" \"/out:{2}\" {3}", inputProjectDriver.ProjectPath,
                 Path.Combine(inputProjectDriver.DeploymentFolder, "mstest-result.trx"), reportInfo.FilePath, GetCustomXsltArgument());
         }
 
@@ -75,7 +77,7 @@ namespace TechTalk.SpecFlow.Specs.StepDefinitions
 
             processHelper.RunProcess(
                 Path.Combine(AssemblyFolderHelper.GetTestAssemblyFolder(), @"SpecFlow\tools\specflow.exe"),
-                "StepDefinitionReport \"{0}\" \"/out:{1}\" {2}", inputProjectDriver.ProjectFilePath, reportInfo.FilePath, Debugger.IsAttached ? "/debug" : "");
+                "StepDefinitionReport \"{0}\" \"/out:{1}\" {2}", inputProjectDriver.ProjectPath, reportInfo.FilePath, Debugger.IsAttached ? "/debug" : "");
 
             //StepDefinitionReportParameters reportParameters =
             //    new StepDefinitionReportParameters(inputProjectDriver.ProjectFilePath, reportInfo.FilePath, "", "bin\\Debug", true);

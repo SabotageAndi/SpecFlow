@@ -12,6 +12,7 @@ namespace SpecFlow.TestProjectGenerator.ProgramLanguageDrivers
         }
 
         protected override string BindingClassFileName => "BindingClass.vb";
+        protected override string BindingFileName => "Bindings.vb";
         public override string FileEnding => ".vb";
 
         public override string ProjectFileName => "TestProjectFile.vbproj";

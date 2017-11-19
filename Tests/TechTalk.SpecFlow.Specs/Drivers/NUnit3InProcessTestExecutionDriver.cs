@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SpecFlow.TestProjectGenerator;
 
 namespace TechTalk.SpecFlow.Specs.Drivers
 {

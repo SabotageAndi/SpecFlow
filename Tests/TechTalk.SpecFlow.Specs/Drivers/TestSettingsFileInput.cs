@@ -1,4 +1,6 @@
-﻿namespace TechTalk.SpecFlow.Specs.Drivers
+﻿using SpecFlow.TestProjectGenerator.Inputs;
+
+namespace TechTalk.SpecFlow.Specs.Drivers
 {
     public class TestSettingsFileInput : FileInput
     {

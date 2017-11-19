@@ -14,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="TestProjectTemplates\BindingClass.cs" />
+    <Compile Remove="TestProjectTemplates\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +27,7 @@
     <PackageReference Include="GitVersionTask" Version="3.6.5" />
     <PackageReference Include="Microsoft.Build" Version="15.3.409" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409" />
-    <PackageReference Include="NuGet.CommandLine" Version="4.1.0" />
+    <PackageReference Include="NuGet.CommandLine" Version="4.3.0" />
     <PackageReference Include="vswhere" Version="2.2.7" />
   </ItemGroup>
 

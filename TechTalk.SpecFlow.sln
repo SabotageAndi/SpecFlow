@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{DCE0C3C4-5BC6-4A30-86BE-3FEFF4677A01}"
 EndProject
@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.bat = build.bat
 		changelog.txt = changelog.txt
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		Directory.build.props = Directory.build.props
 		LICENSE.txt = LICENSE.txt
 		nuget.config = nuget.config
 		PostCompile.bat = PostCompile.bat
@@ -50,6 +51,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechTalk.SpecFlow.Utils", "TechTalk.SpecFlow.Utils\TechTalk.SpecFlow.Utils.csproj", "{D719B8EA-6C89-4B81-AABD-65ACF562F521}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechTalk.SpecFlow.Tools", "TechTalk.SpecFlow.Tools\TechTalk.SpecFlow.Tools.csproj", "{DCD5104A-5301-44B0-A9B8-0041F782603F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlow.TestProjectGenerator", "SpecFlow.TestGenerator\SpecFlow.TestProjectGenerator\SpecFlow.TestProjectGenerator.csproj", "{34E25C54-2350-4E62-BE59-8F737FEFD42D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +138,12 @@ Global
 		{DCD5104A-5301-44B0-A9B8-0041F782603F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCD5104A-5301-44B0-A9B8-0041F782603F}.VS2010IntegrationTest|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCD5104A-5301-44B0-A9B8-0041F782603F}.VS2010IntegrationTest|Any CPU.Build.0 = Debug|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.VS2010IntegrationTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D}.VS2010IntegrationTest|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +157,7 @@ Global
 		{AEDCA17F-4535-4494-8580-E50A497C605C} = {A10B5CD6-38EC-4D7E-9D1C-2EBA8017E437}
 		{48E0CB65-33D4-49CD-9E22-1AD49D8684B0} = {0359B7D7-7E29-48E9-8DF9-7D1FACFA5CFA}
 		{7E637287-6E34-4BEC-8226-B052062AEA1F} = {0359B7D7-7E29-48E9-8DF9-7D1FACFA5CFA}
+		{34E25C54-2350-4E62-BE59-8F737FEFD42D} = {A10B5CD6-38EC-4D7E-9D1C-2EBA8017E437}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4D0636F-0160-4FA5-81A3-9784C7E3B3A4}

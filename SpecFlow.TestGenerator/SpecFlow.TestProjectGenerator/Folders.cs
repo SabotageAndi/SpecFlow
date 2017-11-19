@@ -35,7 +35,7 @@ namespace SpecFlow.TestProjectGenerator
             }
         }
 
-        public virtual string VsAdapterFolderProjectBinaries => throw new NotImplementedException();
+        public virtual string VsAdapterFolderProjectBinaries => "";
 
         public bool VsAdapterFolderChanged => _vsAdapterFolderChanged;
 

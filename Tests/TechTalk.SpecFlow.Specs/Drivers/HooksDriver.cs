@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpecFlow.TestProjectGenerator;
 using Xunit;
 
 namespace TechTalk.SpecFlow.Specs.Drivers

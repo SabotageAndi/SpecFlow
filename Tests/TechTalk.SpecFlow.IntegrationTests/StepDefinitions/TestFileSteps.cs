@@ -7,6 +7,7 @@ using TechTalk.SpecFlow.IntegrationTests.TestFiles;
 using TechTalk.SpecFlow.Assist;
 using System.Linq;
 using FluentAssertions;
+using SpecFlow.TestProjectGenerator;
 using TechTalk.SpecFlow.Specs.Drivers;
 using TechTalk.SpecFlow.Specs.Drivers.Parser;
 
