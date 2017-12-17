@@ -25,7 +25,7 @@ namespace TechTalk.SpecFlow.Specs.Support
         {
             _folders.SpecFlow = Path.Combine(_folders.SpecFlow, "SpecFlow");
             _inputProjectDriver.TestingFrameworkPackage = String.Empty;
-            _inputProjectDriver.UnitTestProvider = global::SpecFlow.TestProjectGenerator.UnitTestProvider.MSTest;
+            _inputProjectDriver.UnitTestProvider = global::SpecFlow.TestProjectGenerator.UnitTestProvider.NUnit3;
         }
     }
 }

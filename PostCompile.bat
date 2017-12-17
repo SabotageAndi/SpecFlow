@@ -21,6 +21,7 @@ mkdir "%copyTargetDir%\FSharp\"
 
 copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.targets "%copyTargetDir%\SpecFlow\Tools"
 copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.tasks "%copyTargetDir%\SpecFlow\Tools"
+copy .\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.props "%copyTargetDir%\SpecFlow\Tools"
 copy .\TechTalk.SpecFlow.Tools\bin\Debug\net45\SpecFlow.* "%copyTargetDir%\SpecFlow\Tools"
 copy .\TechTalk.SpecFlow\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\Tools"
 copy .\TechTalk.SpecFlow.Utils\bin\Debug\net45\*.* "%copyTargetDir%\SpecFlow\Tools"
