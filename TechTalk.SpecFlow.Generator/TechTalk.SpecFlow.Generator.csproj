@@ -18,6 +18,7 @@
     <ProjectReference Include="..\TechTalk.SpecFlow\TechTalk.SpecFlow.csproj" />
     <ProjectReference Include="..\TechTalk.SpecFlow.Parser\TechTalk.SpecFlow.Parser.csproj" />
     <ProjectReference Include="..\TechTalk.SpecFlow.Utils\TechTalk.SpecFlow.Utils.csproj" />
+
   </ItemGroup>
 
   <ItemGroup>

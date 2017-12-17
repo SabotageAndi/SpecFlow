@@ -36,6 +36,7 @@
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
+
   </ItemGroup>
 
   <Target Name="GenerateConfigs" BeforeTargets="Build">
