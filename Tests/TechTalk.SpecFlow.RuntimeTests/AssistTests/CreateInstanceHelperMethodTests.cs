@@ -370,7 +370,7 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.three.Should().Be(999);
         }
 
-        [Test]
+        [Fact]
         public void Uses_property_aliases()
         {
             var table = new Table("AliasOne", "AliasTwo", "AliasThree");
@@ -382,7 +382,7 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.PropertyThree.Should().Be("PropertyThree");
         }
 
-        [Test]
+        [Fact]
         public void Uses_field_aliases()
         {
             var table = new Table("FieldAliasOne", "FieldAliasTwo", "FieldAliasThree");
@@ -394,7 +394,7 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.FieldThree.Should().Be("FieldThree");
         }
 
-        [Test]
+        [Fact]
         public void Property_aliases_allow_multiple_property_population()
         {
             var table = new Table("AliasOne", "AliasTwo", "AliasThree");
@@ -405,7 +405,7 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.AnotherPropertyWithSameAlias.Should().Be("PropertyOne");
         }
 
-        [Test]
+        [Fact]
         public void Property_aliases_do_not_allow_type_mismatch_property_population()
         {
             var table = new Table("AliasOne", "AliasTwo", "AliasThree");
@@ -416,7 +416,7 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.AliasedButTypeMismatch.Should().Be(0);
         }
 
-        [Test]
+        [Fact]
         public void Property_aliases_work_for_vertical_format()
         {
             var table = new Table("Field", "Value");
@@ -430,11 +430,11 @@ namespace TechTalk.SpecFlow.RuntimeTests.AssistTests
             test.PropertyThree.Should().Be("From Rich");
         }
 
-        [Test]
-        [TestCase("FirstName", "MiddleName", "Surname")]
-        [TestCase("FirstName", "MiddleName", "Lastname")]
-        [TestCase("First Name", "Middle Name", "Last name")]
-        [TestCase("Known As", "Never Known As", "Dad's Last Name")]
+        [Theory]
+        [InlineData("FirstName", "MiddleName", "Surname")]
+        [InlineData("FirstName", "MiddleName", "Lastname")]
+        [InlineData("First Name", "Middle Name", "Last name")]
+        [InlineData("Known As", "Never Known As", "Dad's Last Name")]
         public void Property_can_have_many_aliases_and_uses_regex_to_match_business_jargon(string firstNameAlias, string middleNameAlias, string lastNameAlias)
         {
             var table = new Table("Field", "Value");

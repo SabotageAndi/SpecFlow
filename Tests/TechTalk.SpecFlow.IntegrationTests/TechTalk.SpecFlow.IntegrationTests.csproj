@@ -66,10 +66,10 @@
 
   <PropertyGroup>
     <VerboseOutput>true</VerboseOutput>
-    <SpecFlowTasksPath>..\..\TechTalk.SpecFlow.Tools\bin\$(Configuration)\net45\specflow.exe</SpecFlowTasksPath>
-  <Import Project="..\..\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.tasks" />
+    <SpecFlowTasksPath>..\..\TechTalk.SpecFlow.Tools\bin\$(Configuration)\net45\specflow.exe</SpecFlowTasksPath> 
   </PropertyGroup>
 
+  <Import Project="..\..\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.tasks" />
   <Import Project="..\..\TechTalk.SpecFlow.Tools\MsBuild\TechTalk.SpecFlow.NewCSProj.targets" />
 
   <Target Name="GenerateSpecFlowCodeBehinds" BeforeTargets="Build">
